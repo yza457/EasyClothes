@@ -18,30 +18,39 @@ def create_db():
         if conn:
             conn.close()
 
+
+
 def store_insert(items):
     db = sqlite3.connect(':wardrobe:')    
     cursor = db.cursor()
     count = 0
     index = 0
-    for keys in items:
-        cursor.execute('SELECT COUNT(*) FROM wardrobe_table;', (count))
+    for eachitem in items:
+        count = cursor.rowcount
         clothesNo = count+1
-        nickname = items(index,['name'])
-        clothestype = items(index,['type'])
-        location = items(index,['location'])
-        cursor.execute('''INSERT INTO wardrobe_table(id, type, name, location)
-                        VALUES(?,?,?,?)''', (clothesNo,nickname, clothestype, location))
+        nickname = eachitem['name']
+        clothestype = eachitem['type']
+        location = eachitem['location']
+        cursor.execute('''INSERT INTO wardrobe_table(id, type, name, location) VALUES(?,?,?,?)''',(clothesNo,nickname, clothestype, location))
+        index=index+1
     db.commit()
 
 
 if __name__ == '__main__':
     if not os.path.exists("wardrobe.db"):
         create_db()
-    items = {
+    items = [
+        {
         "name": "Ford",
         "type": "Mustang",
         "location": "closet"
-    }
+        },
+        {
+        "name": "aaa",
+        "type": "ddd",
+        "location": "ffff"
+        }
+    ]
     store_insert(items)
     # with open(os.getcwd() + "/test.json", 'r') as f:
     #     test = json.load(f)
