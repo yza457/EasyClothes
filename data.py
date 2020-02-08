@@ -21,7 +21,7 @@ def create_db():
 
 
 def store_insert(items):
-    db = sqlite3.connect(':wardrobe:')    
+    db = sqlite3.connect(os.getcwd() + "/wardrobe.db")    
     cursor = db.cursor()
     count = 0
     index = 0
@@ -31,7 +31,7 @@ def store_insert(items):
         nickname = eachitem['name']
         clothestype = eachitem['type']
         location = eachitem['location']
-        cursor.execute('''INSERT INTO wardrobe_table(id, type, name, location) VALUES(?,?,?,?)''',(clothesNo,nickname, clothestype, location))
+        cursor.execute('INSERT INTO wardrobe_table(id, type, name, location) VALUES(?,?,?,?)',(clothesNo,nickname, clothestype, location))
         index=index+1
     db.commit()
 
