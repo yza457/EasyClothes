@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<!--
+	Projection by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<div class="inner">
+					<div class="image round left">
+						<img src="images/icon.svg" style="width: 20%; height: 20%" alt="icon" />
+					</div>
+				</div>
+			</header>
+
+		<!-- Banner -->
+			<section id="banner">
+				<div class="inner">
+					<header>
+						<h1>EasyClothes</h1>
+					</header>
+					<div class="flex ">
+						<div>
+						<a href="#" id="addBtm" class="button">Add a new cloth</a>
+						</div>
+						<div>
+							<span class="icon fa-camera"></span>
+						</div>
+					</div>
+					<div class="flex ">
+						<div>
+						<a href="#" id="searchBtm" class="button">Search and check</a>
+						</div>
+						<div>
+							<span class="icon fa-search-plus"></span>				
+						</div>
+					</div>
+				</div>
+			</section>
+		<!-- Search -->
+			<section id="search" >			
+				<div class="inner" class="wrapper align-center">
+					<h3></h3>
+					<!-- Break -->
+					<div class="row uniform">
+						<div class="12u$">
+							<div class="select-wrapper">
+								<select name="search-category" id="search-category">
+									<option value="">- Search & Check -</option>
+									<option value="1">Top</option>
+									<option value="2">Bottom</option>
+									<option value="3">Shoes</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<!-- Break -->
+					<div class="box alt">
+						<div class="row 50% uniform">
+							<div class="4u">
+								<span class="image fit">
+								<img src="images/pic01.jpg" alt="" />	
+								<ul>
+									<li>name: aa</li>
+									<li>type: clothes</li>
+									<li>location: 1st wardrobe</li>
+								</ul>
+							</span>
+							</div>
+							<div class="4u">
+								<span class="image fit">
+								<img src="images/pic01.jpg" alt="" />	
+								<ul>
+									<li>name: aa</li>
+									<li>type: clothes</li>
+									<li>location: 1st wardrobe</li>
+								</ul>
+							</span>
+							</div>
+							<div class="4u">
+								<span class="image fit">
+								<img src="images/pic01.jpg" alt="" />	
+								<ul>
+									<li>name: aa</li>
+									<li>type: clothes</li>
+									<li>location: 1st wardrobe</li>
+								</ul>
+							</span>
+							</div>
+							<div class="4u">
+								<span class="image fit">
+								<img src="images/pic01.jpg" alt="" />	
+								<ul>
+									<li>name: aa</li>
+									<li>type: clothes</li>
+									<li>location: 1st wardrobe</li>
+								</ul>
+							</span>
+							</div>
+							<div class="4u">
+								<span class="image fit">
+								<img src="images/pic01.jpg" alt="" />	
+								<ul>
+									<li>name: aa</li>
+									<li>type: clothes</li>
+									<li>location: 1st wardrobe</li>
+								</ul>
+							</span>
+							</div>
+							<div class="4u">
+								<span class="image fit">
+								<img src="images/pic01.jpg" alt="" />	
+								<ul>
+									<li>name: aa</li>
+									<li>type: clothes</li>
+									<li>location: 1st wardrobe</li>
+								</ul>
+							</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		<!-- Add -->
+			<footer id="add">
+				<div class="inner">
+					<h3>Add a new cloth</h3>
+					<form id="addform" action="#" method="post">
+						<div class="field half first">
+							<label for="name">Name</label>
+							<input name="name" id="name" type="text" placeholder="Name">
+						</div>
+						<div class="field half">
+							<label for="type">Type</label>
+							<div class="select-wrapper">
+								<select name="type-category" id="type-category">
+									<option value="0">Top</option>
+									<option value="1">Bottom</option>
+									<option value="2">Shoes</option>
+								</select>
+							</div>
+						</div>
+						<div class="locate">
+							<label for="location">Location</label>
+							<input name="location" id="location" type="text" placeholder="Location">
+						</div>
+						<div class="field half first" id="imgform">
+							<label>Picture</label>
+							<label for="picture" class="choosePic" style="height:2.75em; border-radius: 10px;border: solid 2px #8dcca9; color: #eee!important; width:100%; background-color: #6cc091"> Click to choose your photo !</label>
+
+							<input name="picture" id="picture" type="file" style="display:none">
+							<div><img id="loading" value='custom' alt="" data-address='' title="auto" width="300px" /></div>
+						</div>
+						<ul class="actions">
+							<li><input name="submit" value="Add it" class="button" type="submit"></li>
+						</ul>
+						<p class="form-message"></p>
+					</form>
+					<div class="copyright">
+						&copy; coolTeamSFU
+					</div>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+<script >
+	$("#addBtm").click(function() {
+	    $('html,body').animate({
+	        scrollTop: $("#add").offset().top},
+	        'slow');
+		});
+
+		$("#searchBtm").click(function() {
+	    $('html,body').animate({
+	        scrollTop: $("#search").offset().top},
+	        'slow');
+		});
+	
+	$('#picture').on('change',function(){
+    	var filePath = $(this).val(),         //获取到input的value，里面是文件的路径
+    		fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+    		src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
+    	// 检查是否是图片
+    	if( !fileFormat.match(/.png|.jpg|.jpeg/) ) {
+    		error_prompt_alert('Not a picture, please choose a file with: png/jpg/jpeg');
+        	return;  
+        }
+        $('#loading').attr('src',src);
+
+	});
+
+	$(document).ready(function(){
+
+		$("form").on('submit', function(event) {
+			alert("ok");
+			$.ajax({
+				data: {
+					name: $("#name").val(),
+					type: $("#type-category").val(),
+					location: $("#location").val(),
+					submit: $("#submit").val()
+				},
+				dataType:'json'
+				//type: 'POST',
+				//url: 'script.php',
+
+				// success: function (textStatus, status) {
+			 //        console.log(textStatus);
+			 //        console.log(status);
+		  //   	},
+		  //   	error: function(xhr, textStatus, error) {
+
+			        // console.log(xhr.responseText);
+			        // console.log(xhr.statusText);
+			        // console.log(textStatus);
+			    //}
+				// request.done(function(msg){
+				// 	console.log(msg);
+				// });
+				// request.fail(function(jqXHR, textStatus){
+				// 	console.log("Request failed:" + textStatus);
+				// });
+			//});
+			
+
+		});
+	});
+</script>
+
+
+	</body>
+</html>
