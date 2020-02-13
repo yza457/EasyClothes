@@ -18,40 +18,63 @@ def create_db():
         if conn:
             conn.close()
 
-
-
 def store_insert(items):
+    if not os.path.exists("wardrobe.db"):
+        create_db()
     db = sqlite3.connect(os.getcwd() + "/wardrobe.db")    
     cursor = db.cursor()
-    count = 0
     index = 0
+    cursor.execute("SELECT COUNT (*) FROM wardrobe_table")
+    count = cursor.fetchone()[0]
+    # print("now rowcount is " + str(cursor.rowcount))
+    # count = 0 if cursor.rowcount == -1 else cursor.rowcount
     for eachitem in items:
-        count = cursor.rowcount
         clothesNo = count+1
         nickname = eachitem['name']
         clothestype = eachitem['type']
         location = eachitem['location']
-        cursor.execute('INSERT INTO wardrobe_table(id, type, name, location) VALUES(?,?,?,?)',(clothesNo,nickname, clothestype, location))
+        # print((clothesNo, nickname, clothestype, location))
+        cursor.execute('INSERT INTO wardrobe_table(id, type, name, location) VALUES(?,?,?,?)',(clothesNo, clothestype, nickname, location))
         index=index+1
+        count = count + 1
     db.commit()
 
+def store_retrieve(input):
+    # input = '[{"Type": 1}]'
+    try:
+        conn = sqlite3.connect(os.getcwd() + "/wardrobe.db")
+    except Error as e:
+        print(e)
+    input_type = input[0]['type']
+    # print(input_type)
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM wardrobe_table WHERE type=?", (input_type,))
+    rows = cur.fetchall()
+    print(rows)
+    ret = []
+    for row in rows:
+        dict_row = {}
+        dict_row['name'] = row[2]
+        dict_row['type'] = row[1]
+        dict_row['location'] = row[3]
+        # print(dict_row)
+        ret.append(dict_row)
+    print(ret)
+    return ret    
 
-if __name__ == '__main__':
-    if not os.path.exists("wardrobe.db"):
-        create_db()
-    items = [
-        {
-        "name": "Ford",
-        "type": "Mustang",
-        "location": "closet"
-        },
-        {
-        "name": "aaa",
-        "type": "ddd",
-        "location": "ffff"
-        }
-    ]
-    store_insert(items)
-    # with open(os.getcwd() + "/test.json", 'r') as f:
-    #     test = json.load(f)
-    #     print(test[-1]['Kernel'])
+def test():
+    print("this is a test")
+
+
+# if __name__ == '__main__':
+#     if not os.path.exists("wardrobe.db"):
+#         create_db()
+#     items = [   {"name": "Ford", "type": "Mustang", "location": "closet"}, 
+#                 {"name": "aaa", "type": "ddd", "location": "ffff"},
+#                 {"name": "Ford2", "type": "Mustang", "location": "closet2"}]
+#     store_insert(items)
+#     # store_insert(items)
+#     store_retrieve(items)
+#     # with open(os.getcwd() + "/test.json", 'r') as f:
+#     #     test = json.load(f)
+#     #     print(test[-1]['Kernel'])
