@@ -28,15 +28,12 @@ def store_insert(items):
     count = cursor.fetchone()[0]
     # print("now rowcount is " + str(cursor.rowcount))
     # count = 0 if cursor.rowcount == -1 else cursor.rowcount
-    for eachitem in items:
-        clothesNo = count+1
-        nickname = eachitem['name']
-        clothestype = eachitem['type']
-        location = eachitem['location']
-        # print((clothesNo, nickname, clothestype, location))
-        cursor.execute('INSERT INTO wardrobe_table(id, type, name, location) VALUES(?,?,?,?)',(clothesNo, clothestype, nickname, location))
-        index=index+1
-        count = count + 1
+    clothesNo = count+1
+    nickname = items['name']
+    clothestype = items['type']
+    location = items['location']
+    # print((clothesNo, nickname, clothestype, location))
+    cursor.execute('INSERT INTO wardrobe_table(id, type, name, location) VALUES(?,?,?,?)',(clothesNo, clothestype, nickname, location))
     db.commit()
 
 def store_retrieve(input):
