@@ -135,7 +135,7 @@
 			<footer id="add">
 				<div class="inner">
 					<h3>Add a new cloth</h3>
-					<form id="addform" action="#" method="post">
+					<form id="addform" action="#" method="POST">
 						<div class="field half first">
 							<label for="name">Name</label>
 							<input name="name" id="name" type="text" placeholder="Name">
@@ -205,39 +205,34 @@
 	});
 
 	$(document).ready(function(){
-
 		$("form").on('submit', function(event) {
-			alert("ok");
+		
 			$.ajax({
+				//data: $('form').serialize(),
 				data: {
 					name: $("#name").val(),
 					type: $("#type-category").val(),
 					location: $("#location").val(),
 					submit: $("#submit").val()
 				},
-				dataType:'json'
-				//type: 'POST',
-				//url: 'script.php',
+				//dataType:'json',
+				type: 'POST',
+				url: '/server',
+				success: function(response){
+					console.log(response);
+				},
+				error: function(response){
+					console.log(error);
+				}
+			});
+			// .done(function(data){
+			// 	if( data.error){
+			// 		alert("data error");
+			// 	}
+			// });
 
-				// success: function (textStatus, status) {
-			 //        console.log(textStatus);
-			 //        console.log(status);
-		  //   	},
-		  //   	error: function(xhr, textStatus, error) {
-
-			        // console.log(xhr.responseText);
-			        // console.log(xhr.statusText);
-			        // console.log(textStatus);
-			    //}
-				// request.done(function(msg){
-				// 	console.log(msg);
-				// });
-				// request.fail(function(jqXHR, textStatus){
-				// 	console.log("Request failed:" + textStatus);
-				// });
-			//});
-			
-
+			event.preventDefault();
+		    
 		});
 	});
 </script>
