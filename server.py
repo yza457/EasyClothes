@@ -28,8 +28,8 @@ def server():
 @app.route('/serverRetrieve', methods=['POST'])
 def serverRetrieve():
     print(request.form)
-    data.store_retrieve(request.form)
-    return "ok"
+    ret = data.store_retrieve(request.form)
+    return ret
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
