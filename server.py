@@ -7,13 +7,14 @@ app = Flask(__name__, static_folder='', template_folder='')
 def index():
     return render_template('index.html')
 
+# used for store clothes data into database
 @app.route('/server', methods=['POST'])
 def server():
     # print(request.form)
     # name = request.form['name']
     # print("1")
     # print("2")
-    # print(request.form)
+    print(request.form)
     # n = request.form['name']
     # t = request.form['type']
     # loc = request.form['location'])
@@ -21,6 +22,13 @@ def server():
     # type = request.form['form']
     # location = request.form['location']
     # submit = request.form['submit']
+    return "ok"
+
+# used for store clothes data into database
+@app.route('/serverRetrieve', methods=['POST'])
+def serverRetrieve():
+    print(request.form)
+    data.store_retrieve(request.form)
     return "ok"
 
 if __name__ == '__main__':
