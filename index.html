@@ -54,8 +54,8 @@
 					<div class="row uniform">
 						<div class="12u$">
 							<div class="select-wrapper">
-								<select name="search-category" id="search-category">
-									<option value="">- Search & Check -</option>
+								<select name="search-category" id="search-category" onchange="searchFun()">
+									<option value="0">- Search & Check -</option>
 									<option value="1">Top</option>
 									<option value="2">Bottom</option>
 									<option value="3">Shoes</option>
@@ -65,8 +65,8 @@
 					</div>
 					<!-- Break -->
 					<div class="box alt">
-						<div class="row 50% uniform">
-							<div class="4u">
+						<div id="pics" class="row 50% uniform">
+							<!-- <div class="4u">
 								<span class="image fit">
 								<img src="images/pic01.jpg" alt="" />	
 								<ul>
@@ -125,7 +125,7 @@
 									<li>location: 1st wardrobe</li>
 								</ul>
 							</span>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -144,9 +144,9 @@
 							<label for="type">Type</label>
 							<div class="select-wrapper">
 								<select name="type-category" id="type-category">
-									<option value="0">Top</option>
-									<option value="1">Bottom</option>
-									<option value="2">Shoes</option>
+									<option value="1">Top</option>
+									<option value="2">Bottom</option>
+									<option value="3">Shoes</option>
 								</select>
 							</div>
 						</div>
@@ -234,7 +234,44 @@
 			event.preventDefault();
 		    
 		});
+
 	});
+
+	function searchFun() {
+		$.ajax({
+			data:{
+				type: $("#search-category").val()
+			},
+			type: 'GET',
+			url: '/serverRetrieve',
+			success: function(response){
+				console.log(response);
+				updatePic(response);
+			},
+			error: function(response){
+				console.log(error);
+			}
+		});
+	}
+
+	function updatePic(data){
+		var length = Object.keys(data).length;
+		//alert(length);
+		for(i = 0; i < 2; i++){
+			$('#pics').append("<div class=\"4u\"> " +
+								" <span class=\"image fit\"> " +
+								"<img src=\"images/pic01.jpg\"/>" +	
+								"<ul>" +
+									"<li>name:" + data[i].name + "</li>" +
+									"<li>type:" + data[i].type + "</li> " +
+									"<li>location:" + data[i].location + "</li> " +
+								"</ul> " +
+							"</span> " +
+							"</div> " 
+							);
+		}
+	}
+	
 </script>
 
 
