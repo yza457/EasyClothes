@@ -135,7 +135,7 @@
 			<footer id="add">
 				<div class="inner">
 					<h3>Add a new cloth</h3>
-					<form id="addform" action="#" method="POST">
+					<form id="addform" action="/server" method="POST">
 						<div class="field half first">
 							<label for="name">Name</label>
 							<input name="name" id="name" type="text" placeholder="Name">
@@ -192,8 +192,8 @@
 		});
 	
 	$('#picture').on('change',function(){
-    	var filePath = $(this).val(),         //获取到input的value，里面是文件的路径
-    		fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
+    	var filePath = $(this).val(), //获取到input的value，里面是文件的路径
+    		fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(), //文件类型
     		src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
     	// 检查是否是图片
     	if( !fileFormat.match(/.png|.jpg|.jpeg/) ) {
@@ -201,20 +201,23 @@
         	return;  
         }
         $('#loading').attr('src',src);
+		var file = this.files[0];
+		alert("file name is" + file.name);
 
 	});
 
 	$(document).ready(function(){
 		$("form").on('submit', function(event) {
-		
+			var fd = newFormData(this);
 			$.ajax({
 				//data: $('form').serialize(),
-				data: {
-					name: $("#name").val(),
-					type: $("#type-category").val(),
-					location: $("#location").val(),
-					submit: $("#submit").val()
-				},
+				// data: {
+				// 	name: $("#name").val(),
+				// 	type: $("#type-category").val(),
+				// 	location: $("#location").val(),
+				// 	submit: $("#submit").val()
+				// },
+				data: fd,
 				//dataType:'json',
 				type: 'POST',
 				url: '/server',
@@ -257,14 +260,15 @@
 	function updatePic(data){
 		var length = Object.keys(data).length;
 		//alert(length);
-		for(i = 0; i < 2; i++){
+		$('#pics').html("");
+		for(i = 0; i < length; i++){
 			$('#pics').append("<div class=\"4u\"> " +
 								" <span class=\"image fit\"> " +
 								"<img src=\"images/pic01.jpg\"/>" +	
 								"<ul>" +
-									"<li>name:" + data[i].name + "</li>" +
-									"<li>type:" + data[i].type + "</li> " +
-									"<li>location:" + data[i].location + "</li> " +
+									"<li>name: " + data[i].name + "</li>" +
+									"<li>type: " + data[i].type + "</li> " +
+									"<li>location: " + data[i].location + "</li> " +
 								"</ul> " +
 							"</span> " +
 							"</div> " 
