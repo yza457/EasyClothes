@@ -42,10 +42,10 @@ def store_retrieve(input):
         conn = sqlite3.connect(os.getcwd() + "/wardrobe.db")
     except Error as e:
         print(e)
-    input_type = input[0]['type']
+    # input_type = input[0]['type']
     # print(input_type)
     cur = conn.cursor()
-    cur.execute("SELECT * FROM wardrobe_table WHERE type=?", (input_type,))
+    cur.execute("SELECT * FROM wardrobe_table WHERE type=?", (input,))
     rows = cur.fetchall()
     print(rows)
     ret = []
