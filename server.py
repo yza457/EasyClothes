@@ -25,11 +25,12 @@ def server():
     return "ok"
 
 # used for store clothes data into database
-@app.route('/serverRetrieve', methods=['POST'])
+@app.route('/serverRetrieve',)
 def serverRetrieve():
-    print(request.form)
-    ret = data.store_retrieve(request.form)
-    return ret
+    type = int(request.args.get('type'))
+    print("type is ", type)
+    ret = data.store_retrieve(type)
+    return jsonify(ret)
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
