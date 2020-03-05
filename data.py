@@ -38,6 +38,7 @@ def store_insert(items):
 
 def store_retrieve(input):
     # input = '[{"Type": 1}]'
+    type_hash = {1: "Top", 2: "Bottom", 3: "Shoes"}
     try:
         conn = sqlite3.connect(os.getcwd() + "/wardrobe.db")
     except Error as e:
@@ -52,11 +53,11 @@ def store_retrieve(input):
     for row in rows:
         dict_row = {}
         dict_row['name'] = row[2]
-        dict_row['type'] = row[1]
+        dict_row['type'] = type_hash[row[1]]
         dict_row['location'] = row[3]
         # print(dict_row)
         ret.append(dict_row)
-    print(ret)
+    # print(ret)
     return ret    
 
 def test():
